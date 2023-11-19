@@ -1,0 +1,28 @@
+<div class="container">
+  <p>{{ serverId }} - {{ serverStatus }} -- {{ allowNewServer }}</p>
+  <button
+    class="btn btn-primary"
+    [disabled]="allowNewServer"
+    (click)="onCreateServer()"
+  >
+    Add Server
+  </button>
+  <p
+    [ngStyle]="{ backgroundColor: getColor() }"
+    [ngClass]="{ online: serverStatus === 'offline' }"
+  >
+    server status is {{ serverStatus }}
+  </p>
+  <p *ngIf="serverCreated; else noServer">server name is {{ userName }}</p>
+  <ng-template #noServer>
+    <p>No server was created</p>
+    <p></p
+  ></ng-template>
+
+  <!-- <input type = "text" class="form-control" (input) = "onUpdateServerName($event)"/> -->
+  <input type="text" class="form-control" [(ngModel)]="userName" />
+
+  <!-- <input type="text" class="form-control" [(ngModel)] = "userName"/>
+<p>{{userName}}</p>
+<button class="btn btn-secondary" [disabled]="!userName" (click)="onReset()">Reset UserName</button> -->
+</div>
