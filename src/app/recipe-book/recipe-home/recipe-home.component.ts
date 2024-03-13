@@ -7,7 +7,15 @@ import { Recipe } from '../recipe.model';
   styleUrls: ['./recipe-home.component.css'],
 })
 export class RecipeHomeComponent {
-  constructor() {}
+  selectedRecipeHome: Recipe;
+
+  constructor() {
+    this.selectedRecipeHome = new Recipe('dummy');
+  }
 
   ngOnInit() {}
+
+  populateSelectedRecipe(recipe: Recipe) {
+    this.selectedRecipeHome = recipe;
+  }
 }

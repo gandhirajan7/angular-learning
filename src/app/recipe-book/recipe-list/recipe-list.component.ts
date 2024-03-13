@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Recipe } from '../recipe.model';
 ``;
 
@@ -9,6 +9,7 @@ import { Recipe } from '../recipe.model';
 })
 export class RecipeListComponent {
   recipes: Recipe[];
+  @Output() shareRecipeUpwardsEvent = new EventEmitter<Recipe>();
   constructor() {
     this.recipes = [
       new Recipe(
@@ -37,5 +38,9 @@ export class RecipeListComponent {
         'https://www.spiceindiaonline.com/wp-content/uploads/2017/09/Thalappakatti-Mutton-Biriyani-3.jpg'
       ),
     ];
+  }
+
+  shareRecipeUpwards(recipe: Recipe) {
+    this.shareRecipeUpwardsEvent.emit(recipe);
   }
 }

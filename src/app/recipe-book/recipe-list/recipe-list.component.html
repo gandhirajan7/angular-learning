@@ -9,6 +9,7 @@
     <app-recipe-item
       *ngFor="let item of recipes"
       [recipe]="item"
+      (selectRecipeEvent)="shareRecipeUpwards($event)"
     ></app-recipe-item>
   </div>
 </div>
