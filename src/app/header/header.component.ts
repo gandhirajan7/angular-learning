@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,5 +6,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  collapsed: boolean = true;
+  swap: boolean;
+  collapsed: boolean;
+
+  constructor() {
+    this.swap = false;
+    this.collapsed = true;
+  }
+
+  @Output() emitScreenChange = new EventEmitter<boolean>();
+
+  emit(val: boolean) {
+    this.swap = val;
+    this.emitScreenChange.emit(this.swap);
+  }
 }

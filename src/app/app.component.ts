@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'training-app';
+
+  swapScreen: boolean;
+
+  constructor() {
+    this.swapScreen = true;
+  }
 }

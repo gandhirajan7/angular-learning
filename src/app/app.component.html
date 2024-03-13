@@ -1,9 +1,9 @@
 <!-- <router-outlet>
 </router-outlet> -->
-<app-header></app-header>
-<div class="row">
+<app-header (emitScreenChange)="swapScreen = $event"></app-header>
+<div class="">
   <div class="col-md-12">
-    <app-recipe-home></app-recipe-home>
-    <app-shopping-list></app-shopping-list>
+    <app-recipe-home *ngIf="swapScreen"></app-recipe-home>
+    <app-shopping-list *ngIf="!swapScreen"></app-shopping-list>
   </div>
 </div>
