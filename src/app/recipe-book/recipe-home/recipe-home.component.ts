@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 import { Recipe } from '../recipe.model';
+import { RecipeService } from 'src/app/shared/services/recipe.service';
 
 @Component({
   selector: 'app-recipe-home',
@@ -7,15 +8,13 @@ import { Recipe } from '../recipe.model';
   styleUrls: ['./recipe-home.component.css'],
 })
 export class RecipeHomeComponent {
-  selectedRecipeHome: Recipe;
+  selectedRecipeHome: Recipe = new Recipe('dummy');
 
-  constructor() {
-    this.selectedRecipeHome = new Recipe('dummy');
-  }
+  constructor(private recipeService: RecipeService) {}
 
-  ngOnInit() {}
-
-  populateSelectedRecipe(recipe: Recipe) {
-    this.selectedRecipeHome = recipe;
+  ngOnInit() {
+    this.recipeService.recipeSelected.subscribe((recipe: Recipe) => {
+      this.selectedRecipeHome = recipe;
+    });
   }
 }

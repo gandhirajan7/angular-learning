@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { Recipe } from '../recipe.model';
-``;
+import { RecipeService } from 'src/app/shared/services/recipe.service';
 
 @Component({
   selector: 'app-recipe-list',
@@ -8,39 +8,11 @@ import { Recipe } from '../recipe.model';
   styleUrls: ['./recipe-list.component.css'],
 })
 export class RecipeListComponent {
-  recipes: Recipe[];
-  @Output() shareRecipeUpwardsEvent = new EventEmitter<Recipe>();
-  constructor() {
-    this.recipes = [
-      new Recipe(
-        'Briyani',
-        'Thalapakkati Mutton Briayni',
-        'https://www.spiceindiaonline.com/wp-content/uploads/2017/09/Thalappakatti-Mutton-Biriyani-3.jpg'
-      ),
-      new Recipe(
-        'Dosai',
-        'Spicy tamil masala dosai',
-        'https://www.vegrecipesofindia.com/wp-content/uploads/2021/06/masala-dosa-recipe-1-1024x1536.jpg'
-      ),
-      new Recipe(
-        'Thayir Sadham',
-        'South Indian Curd Rice',
-        'https://www.vegrecipesofindia.com/wp-content/uploads/2016/07/curd-rice-5.jpg'
-      ),
-      new Recipe(
-        'Dosai',
-        'Spicy tamil masala dosai',
-        'https://www.vegrecipesofindia.com/wp-content/uploads/2021/06/masala-dosa-recipe-1-1024x1536.jpg'
-      ),
-      new Recipe(
-        'Briyani',
-        'Thalapakkati Mutton Briayni',
-        'https://www.spiceindiaonline.com/wp-content/uploads/2017/09/Thalappakatti-Mutton-Biriyani-3.jpg'
-      ),
-    ];
-  }
+  recipes!: Recipe[];
 
-  shareRecipeUpwards(recipe: Recipe) {
-    this.shareRecipeUpwardsEvent.emit(recipe);
+  constructor(private recipeService: RecipeService) {}
+
+  ngOnInit() {
+    this.recipes = this.recipeService.getRecipeList();
   }
 }
