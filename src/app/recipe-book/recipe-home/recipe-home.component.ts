@@ -1,4 +1,4 @@
-import { Component, Output } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from 'src/app/shared/services/recipe.service';
 
@@ -7,7 +7,7 @@ import { RecipeService } from 'src/app/shared/services/recipe.service';
   templateUrl: './recipe-home.component.html',
   styleUrls: ['./recipe-home.component.css'],
 })
-export class RecipeHomeComponent {
+export class RecipeHomeComponent implements OnInit {
   selectedRecipeHome: Recipe = new Recipe('dummy');
 
   constructor(private recipeService: RecipeService) {}
